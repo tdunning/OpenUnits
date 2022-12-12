@@ -24,7 +24,7 @@ chemical :== re/{chem: [^}]+}/
 currency :== "{currency: " <iso-currency-code> "}"
 user-unit :== re/{[^}]*}/
 ```
-White space is allowed between lexical units, but is not allowed in `<unit-lexeme>`s. Within a `<unit-lexeme>` ambiguity between a string of prefix characters with no unit versus a string of prefix characters followed by a defined unit is broken in favor of the version with a unit. Thus `mm` is interpreted as `10^-3 meter` instead of `10^-6`. In the default definitions file, both grams and kilograms are units, but `kg` comes first so `Mkg` will be parsed as `10^6 kilogram` rather than `10^9 gram` and `kg` is interpreted as `1 kilogram` rather than `10^3 gram`. The limit on white space within unit lexemes means that `5 m Wb` will be parsed as `(5) x (10^-3) x (1 Weber)` which is distinct from `5 milli Weber`. This difference is often only visible in the abstract syntax trees produced by the OpenUnits parser, depending on the capabilities of the unit package underneath.
+White space is allowed between lexical units, but is not allowed in `<unit-lexeme>`s. Within a `<unit-lexeme>` ambiguity between a string of prefix characters with no unit versus a string of prefix characters followed by a defined unit is broken in favor of the version with a unit. Thus `mm` is interpreted as `10^-3 meter` instead of `10^-6`. In the default definitions file, both grams and kilograms are units, but `kg` comes first so `Mkg` will be parsed as `10^6 kilogram` rather than `10^9 gram` and `kg` is interpreted as `1 kilogram` rather than `10^3 gram`. The limit on white space within unit lexemes means that `5 m Wb` will be parsed as `(5) x (10^-3) x (1 Weber)` which is distinct from `5 milli Weber`. This difference is often only visible in the abstract syntax trees produced by the OpenUnits parser, depending on the capabilities of the unit package underneath. 
 
 The ambiguity between chemicals, currencies and user-marks is always decided in favor of the first two. Possible values for `<prefix>`, `<unit>` and `<iso-current-code>` are taken from the definitions file.
 
@@ -38,6 +38,9 @@ Parsing a unit expression will result in an abstract syntax tree which can be co
 Generation of an unit expression from an internal representation is also supported, but there is no round-trip guarantee that parsing a string and then generating a new unit expression will regenerate exactly the original string. It is guaranteed that if a source string `x` is parsed into internal representation `u` which is used to generate a final string `y` then `x` and `y` will be equivalent in the sense that they will reduce to the same canonical form.
 
 The OpenUnits syntax is carefully designed to allow much of the work of parsing expressions to be done using regular expressions in order to simplify implementations.
+
+# Common tests
+There are a number of tests specified in `OpenUnits` to simplify building compatibility packages. The simplest tests consist of a string to be parsed, the resulting syntax tree expressed in Polish notation and the result of generating a string from that syntax tree. Either the input or output strings can be missing (but not both). Tests may also include a dimensional analysis of the expression which is a vector of seven exponents, one for each of the base SI units.
 
 # Comparison to other systems
 The (UCUM)[https://github.com/ucum-org/ucum] system has similar goals as OpenUnits and has a much broader set of units. Unfortunately, UCUM is not open source since the license does not allow derivative works. Limited ability to parse or produce strings in UCUM format may be added in the future, but it is explicitly not a goal to maintain or claim compatibility with UCUM. 
