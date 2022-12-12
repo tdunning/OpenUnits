@@ -35,6 +35,11 @@
         {"description":"catalytic activity", "name":"katal", "unit":"kat", "definition":"mol/s"}
     ],
 
+    "additional":[
+        {"description":"gram", "name":"gram", "unit":"g", "definition":"mkg"},
+
+    ]
+
     "traditional":[
         {"description":"inch (based on International yard)", "name":"inch", "unit":"in", "definition":"25.4mm"},
         {"description":"foot (based on International yard)", "name":"foot", "unit":"ft", "definition":"12in"},
@@ -43,7 +48,7 @@
         {"description":"Nautical mile", "name":"nautical mile", "unit":"nmi", "definition":"1852m"}, 
         {"description":"Fahrenheit degree", "name":"degree Fahrenheit", "unit":"degF", "definition":"5K/9", "offset":459.67}
     ],
-    
+
     "prefixes":[
         {"name":"giga", "notation":"G", "value":10E9},
         {"name":"mega", "notation":"M", "value":10E6},

@@ -14,15 +14,19 @@ Exponents can be expressed as directly concatenated numbers `m s-1` (in the styl
 Formally, the BNF for this syntax is
 
 ```
-unit-lexeme :== <number>? <prefix>* <unit>? <other-mark>? <exponent>?
-number :== [0-9]+ ("." [0-9]*)?
-exponent :== <number>
-other-mark :== <chemical> | <currency> | <user-mark>
-chemical :== "{chem: " [^}]+ "}"
+unit-expression ::= unit-lexeme {" " <unit-lexeme>}* {/ <denominator>}?
+denominator ::= <unit-lexeme> | "(" unit-expression ")"
+unit-lexeme :== <number>? re/<prefix>*/ <unit>? <other-mark>? <exponent>?
+number :== re/-?[0-9]+(\.[0-9]*)([eE]-?[0-9]+?/
+exponent :== <number> | "^" <number>
+other-mark :== <chemical> | <currency> | <user-unit>
+chemical :== re/{chem: [^}]+}/
 currency :== "{currency: " <iso-currency-code> "}"
-user-mark :== "{" [^}]* "}"
+user-unit :== re/{[^}]*}/
 ```
-The ambiguity between chemicals, currencies and user-marks is always decided in favor of the first two.
+White space is allowed between lexical units, but is not allowed in `<unit-lexeme>`s. Within a `<unit-lexeme>` ambiguity between a string of prefix characters with no unit versus a string of prefix characters followed by a defined unit is broken in favor of the version with a unit. Thus `mm` is interpreted as `10^-3 meter` instead of `10^-6`. In the default definitions file, both grams and kilograms are units, but `kg` comes first so `Mkg` will be parsed as `10^6 kilogram` rather than `10^9 gram` and `kg` is interpreted as `1 kilogram` rather than `10^3 gram`. The limit on white space within unit lexemes means that `5 m Wb` will be parsed as `(5) x (10^-3) x (1 Weber)` which is distinct from `5 milli Weber`. This difference is often only visible in the abstract syntax trees produced by the OpenUnits parser, depending on the capabilities of the unit package underneath.
+
+The ambiguity between chemicals, currencies and user-marks is always decided in favor of the first two. Possible values for `<prefix>`, `<unit>` and `<iso-current-code>` are taken from the definitions file.
 
 Internally, implementations should use whatever character encoding is most idiomatic on any platform but ISO-Latin-1 is used to exchange unit expressions externally.
 
