@@ -37,8 +37,8 @@
 
     "additional":[
         {"description":"gram", "name":"gram", "unit":"g", "definition":"mkg"},
-
-    ]
+        {"description":"liter", "name":"liter", "unit":"liter", "definition":"1000cm^3"}
+    ],
 
     "traditional":[
         {"description":"inch (based on International yard)", "name":"inch", "unit":"in", "definition":"25.4mm"},
