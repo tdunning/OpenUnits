@@ -1,8 +1,8 @@
 [
-    {"in":"kg", "ast":"[1 kg]", "out":"kg", "canonical": "1kg", "dimension":"M"},
-    {"in":"5mg", "ast":"[5e-3 g]", "out":"5mg", "canonical": "5e-3kg", "dimension":"M"},
-    {"in":"5 mg", "ast":"* [5e-3 1] [1 g]", "out":"5mg", "canonical": "5e-3kg", "dimension":"M"},
-    {"in":"5m/s", "ast":"/ [5 m] [1 s]", "out":"5m/s", "canonical": "5m/s", "dimension":"LS-1"},
-    {"in":"5 m/s", "ast":"/ * [5 1] [1 m] [1 s]", "out":"5 m/s", "canonical":"5m/s", "dimension":"LS-1"},
-    {"in":"15e5 W/(K m)", "ast":"/ * [15e5 1] [1 W] * [1 K] [1 m]", "out":"15e5 W/(K m)", "canonical":"1", "dimension":"LS-1"}
+    {"in":"kg", "ast":"kg", "out":"kg", "canonical": "kg", "dimension":"M"},
+    {"in":"5mg", "ast":"* 5 [m g]", "out":"5mg", "canonical": "5e-3 kg", "dimension":"M"},
+    {"in":"5 mg", "ast":"* 5 [m g]", "out":"5mg", "canonical": "5e-3kg", "dimension":"M"},
+    {"in":"5m/s", "ast":"/ * 5 m s", "out":"5m/s", "canonical": "5m/s", "dimension":"LS-1"},
+    {"in":"5 m/s", "ast":"/ * 5 m s", "out":"5 m/s", "canonical":"5m/s", "dimension":"LS-1"},
+    {"in":"15e5 kW/(K m)", "ast":"/ * 15e5 [k W] * K m", "out":"15e8 W/(K m)", "canonical":"1", "dimension":"MLT-2Θ-1"}
 ]
