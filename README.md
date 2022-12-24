@@ -4,12 +4,12 @@ The goal of the OpenUnits project is to provide an easy way to communicate the u
 
 Units in the sense here include the normal SI base and extended units as well as a small set of US and UK traditional measures, but also has extension points for chemical substances, currency and user defined types. These extensions are clearly not "units" in the sense of metrology and including them will, most likely, irk purists, but they are very useful in practice for, say, sustainability where `Mg {chem: CO2}` or `{currency: USD} / (kW h)` are useful.
 
-OpenUnits only provides parsers and generators for a standard unit representation and is intended to work with a native units system in whatever computer language you are using. Dimensional analysis and unit conversion are out of scope. Thus, you might use (Unitful)[https://painterqubits.github.io/Unitful.jl/stable/] in Julia to perform dimensional analysis or unit conversion but still interact with systems written in Python that use (pint)[https://pint.readthedocs.io/en/stable/] or in Go using (go-units)[https://github.com/bcicen/go-units].
+OpenUnits only provides parsers and generators for a standard unit representation and is intended to work with a native units system in whatever computer language you are using. Dimensional analysis and unit conversion are out of scope. Thus, you might use [Unitful](https://painterqubits.github.io/Unitful.jl/stable/) in Julia to perform dimensional analysis or unit conversion but still interact with systems written in Python that use [pint](https://pint.readthedocs.io/en/stable/) or in Go using [go-units](https://github.com/bcicen/go-units).
 
 # The syntax
 At the lowest level, numbers, prefixes, a unit and exponents are combined into a `unit lexeme`. Unit lexemes are combined into unit expressions using multiplication (indicated by a space), division (indicated by a solidus) and grouping (indicated using parentheses `(` and `)`). To avoid ambiguity, multiplication and division is not allowed after a division. This requires that the unit of thermal conductivity be written using exponents `W m^-1 K^-1` or by using a parenthetical grouping as `W/(m K)`. Alternatives like `W/m/K`, `W/m K` or `W/m K^-1` are not allowed due to ambiguity (feedback welcome on this point).
 
-Exponents can be expressed as directly concatenated numbers `m s-1` (in the style of (UCUM)[https://github.com/ucum-org/ucum]) or by using a caret `m s^-1` for more familiarity. The use of the caret is always accepted when parsing and can be suppressed on generation.
+Exponents can be expressed as directly concatenated numbers `m s-1` (in the style of [UCUM](https://github.com/ucum-org/ucum)) or by using a caret `m s^-1` for more familiarity. The use of the caret is always accepted when parsing and can be suppressed on generation.
 
 Formally, the BNF for this syntax is
 
@@ -43,7 +43,7 @@ The OpenUnits syntax is carefully designed to allow much of the work of parsing 
 There are a number of tests specified in `OpenUnits` to simplify building compatibility packages. The simplest tests consist of a string to be parsed, the resulting syntax tree expressed in Polish notation and the result of generating a string from that syntax tree. Either the input or output strings can be missing (but not both). Tests may also include a dimensional analysis of the expression which is a vector of seven exponents, one for each of the base SI units.
 
 # Comparison to other systems
-The (UCUM)[https://github.com/ucum-org/ucum] system has similar goals as OpenUnits and has a much broader set of units. Unfortunately, UCUM is not open source since the license does not allow derivative works. Limited ability to parse or produce strings in UCUM format may be added in the future, but it is explicitly not a goal to maintain or claim compatibility with UCUM. 
+The [UCUM](https://github.com/ucum-org/ucum) system has similar goals as OpenUnits and has a much broader set of units. Unfortunately, UCUM is not open source since the license does not allow derivative works. Limited ability to parse or produce strings in UCUM format may be added in the future, but it is explicitly not a goal to maintain or claim compatibility with UCUM. 
 
 In addition, UCUM is only concerned with encoding standard metrological units. OpenUnits, on the other hand, allows for application-specific extensions as well as non-metrological units such as currencies.
 
@@ -61,7 +61,7 @@ Keep in mind that asking questions is a great way to contribute. There are no st
 In general, you should be sure that you have the right to make any contributions and be willing to have your contributions licensed under the Apache license. That license will allow others to change your implementation into whatever they want without necessarily giving their changes back or even making them available, so be clear that is OK with you.
 
 # Community and governance
-Currently, OpenUnits is governed using the (BDFL)[https://en.wikipedia.org/wiki/Benevolent_dictator_for_life] model with contributions very welcome. Anybody who makes more than a few quality contributions in the form of documentation, reviews, code or extensions will be granted committer rights. If a community of contributors forms, I will transition the project to a more community-driven governance model.
+Currently, OpenUnits is governed using the [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) model with contributions very welcome. Anybody who makes more than a few quality contributions in the form of documentation, reviews, code or extensions will be granted committer rights. If a community of contributors forms, I will transition the project to a more community-driven governance model.
 
 # Acceptable community behavior
 Be kind. Be generous. 
